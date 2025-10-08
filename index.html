@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Task Manager — Dark Theme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+<header class="app__header">
+<div class="header-content">
+<h1 class="logo">✨ Taskly</h1>
+<p class="subtitle">Modern task manager with progress tracking</p>
+</div>
+<div class="header-actions">
+<div id="userInfo" class="user-info" style="display: none;">
+<span id="usernameDisplay"></span>
+<button id="logoutBtn" class="logout-btn" aria-label="Logout">Logout</button>
+</div>
+<button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+<span class="theme-icon">🌙</span>
+</button>
+</div>
+</header>
+
+
+<section class="card card--input">
+<div class="input-row">
+<input id="taskInput" type="text" placeholder="Add a new task..." aria-label="New task" />
+<button id="addBtn" class="btn">Add</button>
+</div>
+<div class="controls">
+<div class="filters">
+<button class="chip active" data-filter="all">All</button>
+<button class="chip" data-filter="active">Active</button>
+<button class="chip" data-filter="completed">Completed</button>
+</div>
+<button id="clearCompleted" class="link">Clear completed</button>
+</div>
+</section>
+
+
+<section id="tasksSection" class="card card--tasks">
+<ul id="tasksList" class="tasks" aria-live="polite"></ul>
+
+
+<div class="progress-row">
+<div class="progress-info">
+<span id="progressText">0 / 0</span>
+<small>tasks completed</small>
+</div>
+<div class="progress">
+<div id="progressBar" class="progress__bar" style="width: 0%"></div>
+</div>
+</div>
+</section>
+
+
+<footer class="app__footer">
+<small>Made with ❤️ — responsive & themeable • Local Storage enabled</small>
+</footer>
+</main>
+
+<!-- Toast notifications -->
+<div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Authentication Modal -->
+<div id="authModal" class="auth-modal">
+<div class="auth-container">
+<div class="auth-header">
+<h2 id="authTitle">Welcome to Taskly</h2>
+<p id="authSubtitle">Sign in to manage your tasks</p>
+</div>
+
+<!-- Login Form -->
+<form id="loginForm" class="auth-form">
+<div class="form-group">
+<label for="loginUsername">Username</label>
+<input type="text" id="loginUsername" required autocomplete="username">
+</div>
+<div class="form-group">
+<label for="loginPassword">Password</label>
+<input type="password" id="loginPassword" required autocomplete="current-password">
+</div>
+<button type="submit" class="auth-btn">Sign In</button>
+<div class="auth-switch">
+Don't have an account? <a href="#" id="showSignup">Sign up</a>
+</div>
+</form>
+
+<!-- Signup Form -->
+<form id="signupForm" class="auth-form" style="display: none;">
+<div class="form-group">
+<label for="signupUsername">Username</label>
+<input type="text" id="signupUsername" required autocomplete="username">
+</div>
+<div class="form-group">
+<label for="signupPassword">Password</label>
+<input type="password" id="signupPassword" required autocomplete="new-password">
+</div>
+<div class="form-group">
+<label for="confirmPassword">Confirm Password</label>
+<input type="password" id="confirmPassword" required autocomplete="new-password">
+</div>
+<button type="submit" class="auth-btn">Sign Up</button>
+<div class="auth-switch">
+Already have an account? <a href="#" id="showLogin">Sign in</a>
+</div>
+</form>
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
