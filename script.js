@@ -20,6 +20,11 @@ const showLogin = document.getElementById('showLogin');
 const userInfo = document.getElementById('userInfo');
 const usernameDisplay = document.getElementById('usernameDisplay');
 const logoutBtn = document.getElementById('logoutBtn');
+const confirmModal = document.getElementById('confirmModal');
+const confirmTitle = document.getElementById('confirmTitle');
+const confirmMessage = document.getElementById('confirmMessage');
+const confirmCancel = document.getElementById('confirmCancel');
+const confirmOk = document.getElementById('confirmOk');
 
 
 let tasks = []; // {id, text, completed}
@@ -86,6 +91,42 @@ setTimeout(() => {
 toast.classList.remove('show');
 setTimeout(() => toast.remove(), 300);
 }, duration);
+}
+
+// Custom confirmation modal
+function showConfirm(title, message, onConfirm, onCancel = null){
+confirmTitle.textContent = title;
+confirmMessage.textContent = message;
+confirmModal.classList.add('show');
+document.body.style.overflow = 'hidden';
+
+// Remove existing listeners
+confirmOk.replaceWith(confirmOk.cloneNode(true));
+confirmCancel.replaceWith(confirmCancel.cloneNode(true));
+
+// Add new listeners
+document.getElementById('confirmOk').addEventListener('click', () => {
+hideConfirm();
+onConfirm();
+});
+
+document.getElementById('confirmCancel').addEventListener('click', () => {
+hideConfirm();
+if(onCancel) onCancel();
+});
+
+// Close on backdrop click
+confirmModal.addEventListener('click', (e) => {
+if(e.target === confirmModal){
+hideConfirm();
+if(onCancel) onCancel();
+}
+});
+}
+
+function hideConfirm(){
+confirmModal.classList.remove('show');
+document.body.style.overflow = '';
 }
 
 // Authentication functions
@@ -359,7 +400,9 @@ delBtn.className = 'icon-btn';
 delBtn.setAttribute('aria-label','Delete task');
 delBtn.innerHTML = '🗑';
 delBtn.addEventListener('click', ()=>{
-if(confirm('Delete this task?')) deleteTask(task.id);
+showConfirm('Delete Task', 'Are you sure you want to delete this task?', () => {
+deleteTask(task.id);
+});
 });
 
 actions.appendChild(editBtn);
@@ -414,7 +457,9 @@ if(e.key === 'Enter') addBtn.click();
 
 filters.forEach(f=> f.addEventListener('click', ()=> setFilter(f.dataset.filter)));
 clearCompletedBtn.addEventListener('click', ()=>{
-if(confirm('Remove all completed tasks?')) clearCompleted();
+showConfirm('Clear Completed Tasks', 'Are you sure you want to remove all completed tasks?', () => {
+clearCompleted();
+});
 });
 
 themeToggle.addEventListener('click', toggleTheme);
