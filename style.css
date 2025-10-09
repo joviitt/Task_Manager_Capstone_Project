@@ -174,7 +174,7 @@ display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;backgro
 position:fixed;
 top:20px;
 right:20px;
-z-index:1000;
+z-index:9999;
 display:flex;
 flex-direction:column;
 gap:8px;
