@@ -311,7 +311,7 @@ opacity:0.9;
 .auth-form{
 display:flex;
 flex-direction:column;
-gap:18px;
+gap:0px;
 }
 
 .form-group{
@@ -362,7 +362,7 @@ background:rgba(255,255,255,0.1);
 .auth-btn{
 padding:14px 20px;
 border:none;
-border-radius:12px;
+border-radius:200px;
 background:linear-gradient(135deg,var(--accent),var(--accent-2));
 color:#041018;
 font-weight:700;
