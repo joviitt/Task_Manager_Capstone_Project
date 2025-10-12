@@ -490,7 +490,7 @@ position:relative;
 .auth-header::before{
 content:'🔓';
 position:absolute;
-top:-20px;
+top: -32px;
 left:50%;
 transform:translateX(-50%);
 font-size:2rem;
